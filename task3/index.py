@@ -57,10 +57,7 @@ def main():
     dim = embeddings.shape[1]
     print(f"Размерность эмбеддинга: {dim}")
 
-    # FAISS индекс (по скалярному произведению; можно заменить на L2)
     index = faiss.IndexFlatIP(dim)
-
-    # Нормализуем вектора для косинусного сходства (cosine ~ inner product при нормировке)
     faiss.normalize_L2(embeddings)
     index.add(embeddings)
     print(f"В индекс добавлено векторов: {index.ntotal}")
